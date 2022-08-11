@@ -1,0 +1,22 @@
+{
+  "name": "hp_01",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/rover_wrap.js",
+  "type": "module",
+  "scripts": {
+    "test": "standard & brittle test/*.test.js",
+    "test-watch": "standard & brittle --watch test/*.test.js",
+    "fix": "standard --fix"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^18.7.1",
+    "brittle": "^2.4.0",
+    "nodemon": "^2.0.19",
+    "standard": "^17.0.0"
+  },
+  "dependencies": {
+  }
+}
