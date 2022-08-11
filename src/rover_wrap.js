@@ -13,6 +13,22 @@ async function getImageById (id) {
     const imagePack = await result.json()
     return imagePack
   }
+
+  const url = new URL(`termrover/${id}`, baseUrl)
+  const result = await fetch(url)
+  return result.json()
 }
 
-export { getImageById }
+async function * iterateAssending (startIdx = 0) {
+  let index = startIdx
+
+  while (index < Infinity) {
+    try {
+      yield getImageById(index)
+      index++
+    } catch (error) {
+      yield getImageById()
+    }
+  }
+}
+export { getImageById, iterateAssending }
