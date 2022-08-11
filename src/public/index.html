@@ -1,0 +1,89 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <!-- viewport for mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- import custom favicon -->
+    <link rel="icon" type="image/icon" href="/public/favicon.ico" />
+    <title>Rover</title>
+    <style>
+      :root {
+        --color-text: #ddd;
+        --color-background: black;
+      }
+
+      html {
+        height: fill-available;
+        height: -webkit-fill-available;
+      }
+
+      body {
+        padding: 0;
+        margin: 0;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color: var(--color-text);
+        background-color: var(--color-background);
+        box-sizing: border-box;
+        min-height: 100vh;
+        min-height: fill-available;
+        min-height: -webkit-fill-available;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #metadata {
+        background-color: black;
+        font-size: 2em;
+        position: absolute;
+        top: 20px;
+        left: 20;
+      }
+
+      img {
+        max-width: 800px;
+        width: 90%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="metadata"></div>
+    <img/>
+  </body>
+  <script type="module">
+    import { iterateAssending, getImageById } from "./rover_wrap.js";
+    const indexMatch = matchIndexPattern(window.location.href)
+    if (indexMatch) {
+      const imagePack = await getImageById(indexMatch);
+      createImage(indexMatch, imagePack);
+    }
+
+    // ========================================================
+    // helper functions
+    // ========================================================
+    function sleep(ms) {
+      return new Promise((resolve) => setTimeout(resolve, ms));
+    }
+
+    function createImage(idx, imagePack) {
+      const metadataElement = document.getElementById("metadata");
+      // get the image element on the page
+      const imgElement = document.getElementsByTagName("img")[0];
+      imgElement.src = imagePack.images.base64;
+      imgElement.id = `_${idx}`;
+    }
+
+    function matchIndexPattern(href) {
+      const url = new URL(href);
+      const pathname = url.pathname;
+      const imageIdPattern = /\/(\d+)$/;
+      const match = pathname.match(imageIdPattern);
+      if (match) {
+        const idx = parseInt(match[1]);
+        return idx;
+      }
+      return undefined;
+    }
+  </script>
+</html>

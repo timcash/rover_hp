@@ -12,9 +12,11 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "@playwright/test": "^1.25.0",
     "@types/node": "^18.7.1",
     "brittle": "^2.4.0",
     "nodemon": "^2.0.19",
+    "playwright": "^1.25.0",
     "standard": "^17.0.0"
   },
   "dependencies": {
