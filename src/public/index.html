@@ -35,7 +35,7 @@
 
       #metadata {
         background-color: black;
-        font-size: 2em;
+        font-size: 1.5em;
         position: absolute;
         top: 20px;
         left: 20;
@@ -62,8 +62,8 @@
       const urlParams = new URLSearchParams(queryString);
       let cycleTime = 500;
       // do we have the miliseconds param?
-      if (urlParams.has("miliseconds")) {
-        cycleTime = parseInt(urlParams.get("miliseconds"));
+      if (urlParams.has("ms")) {
+        cycleTime = parseInt(urlParams.get("ms"));
       } 
 
       let counter = 0;

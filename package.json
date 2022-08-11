@@ -7,7 +7,7 @@
   "scripts": {
     "start": "nodemon src/http.start.js",
     "test": "standard & brittle test/*.test.js",
-    "test-watch": "standard & brittle --watch test/*.test.js",
+    "test:wrap": "standard & brittle test/rover_wrap.test.js",
     "test:html": "standard & brittle test/html.test.js",
     "fix": "standard --fix"
   },

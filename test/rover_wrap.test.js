@@ -1,13 +1,8 @@
-// ========================================================
-// IMPORTS
-// ========================================================
 import { getImageById, iterateAssending } from '../src/rover_wrap.js'
 import { test, configure } from 'brittle'
 
 configure({ serial: true })
-// ========================================================
-// TESTS
-// ========================================================
+
 test('getImageById() gets the latest image', async (t) => {
   const imagePack = await getImageById()
   isImagePack(t, imagePack)

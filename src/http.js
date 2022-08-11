@@ -2,11 +2,12 @@
 // SMALL_HTTP
 // ========================================================
 // author: timcash
-// small http server
+// bootrap a small_http server
 // built with node.js and core libs
 // based on streams
 // direct access to headers, mimetype and cookies
 // import startHttp(:port), stopHttp() to get started
+// EASY to modify and extend!
 
 // ========================================================
 // IMPORTS

@@ -5,6 +5,9 @@ import { test, configure } from 'brittle'
 
 configure({ serial: true })
 
+// ========================================================
+// BROWSER CONFIGURATION
+// ========================================================
 const baseUrl = 'http://localhost:8080'
 const iPad = devices['iPad Pro 11 landscape']
 const browser = await chromium.launch({
@@ -27,7 +30,7 @@ test('server starts', async (t) => {
 // ========================================================
 // TEST UI WITH REAL BROWSER VIA PLAYWRIGHT
 // ========================================================
-test('/15 should get an image by :index', async (t) => {
+test('/15 get an image by :index', async (t) => {
   const page = await context.newPage()
   const imageIdx = 15
   const url = new URL(`/${imageIdx}`, baseUrl)
@@ -38,7 +41,7 @@ test('/15 should get an image by :index', async (t) => {
   t.end()
 })
 
-test('/ should display assending images', async (t) => {
+test('/ display assending images', async (t) => {
   const page = await context.newPage()
   const url = new URL('/', baseUrl)
   const response = await page.goto(url.toString())
@@ -51,7 +54,7 @@ test('/ should display assending images', async (t) => {
   t.end()
 })
 
-test('/?ms=100 should display assending images faster!', async (t) => {
+test('/?ms=100 display assending images faster!', async (t) => {
   const page = await context.newPage()
   const url = new URL('/?ms=100', baseUrl)
   const response = await page.goto(url.toString())
@@ -60,7 +63,7 @@ test('/?ms=100 should display assending images faster!', async (t) => {
   await page.locator('#_0')
   await page.locator('#_1')
   await page.locator('#_2')
-  t.pass('images cycled')
+  t.pass('images cycled faster')
   t.end()
 })
 

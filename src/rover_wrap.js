@@ -1,9 +1,3 @@
-// ========================================================
-// NOTES
-// ========================================================
-// getLatest() -> imagePack
-// iterateAssending(imagePack) -> *[imagePack]
-
 const baseUrl = 'https://hiring.hypercore-protocol.org'
 
 async function getImageById (id) {
