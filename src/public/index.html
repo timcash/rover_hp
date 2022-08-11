@@ -57,6 +57,21 @@
     if (indexMatch) {
       const imagePack = await getImageById(indexMatch);
       createImage(indexMatch, imagePack);
+    } else {
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      let cycleTime = 500;
+      // do we have the miliseconds param?
+      if (urlParams.has("miliseconds")) {
+        cycleTime = parseInt(urlParams.get("miliseconds"));
+      } 
+
+      let counter = 0;
+      for await (const imagePack of iterateAssending()) {
+        createImage(counter, imagePack);
+        counter++;
+        await sleep(cycleTime);
+      }
     }
 
     // ========================================================
@@ -66,12 +81,25 @@
       return new Promise((resolve) => setTimeout(resolve, ms));
     }
 
+    function imageHover(imgElement, metadata) {
+      // get the metadata element
+      const metadataElement = document.getElementById("metadata");
+      metadataElement.style.display = "block";
+      // set metadata.sol and metadata.earth_date
+      metadataElement.innerHTML = `Sol: ${metadata.sol} - Earth Date: ${metadata.earth_date}`;
+    }
+
     function createImage(idx, imagePack) {
       const metadataElement = document.getElementById("metadata");
       // get the image element on the page
       const imgElement = document.getElementsByTagName("img")[0];
       imgElement.src = imagePack.images.base64;
       imgElement.id = `_${idx}`;
+
+      imgElement.addEventListener("mouseover", () => imageHover(imgElement, imagePack.metadata));
+      imgElement.addEventListener("mouseleave", () => {
+        metadataElement.style.display = "none";
+      } );
     }
 
     function matchIndexPattern(href) {

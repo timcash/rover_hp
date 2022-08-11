@@ -5,8 +5,10 @@
   "main": "src/rover_wrap.js",
   "type": "module",
   "scripts": {
+    "start": "nodemon src/http.start.js",
     "test": "standard & brittle test/*.test.js",
     "test-watch": "standard & brittle --watch test/*.test.js",
+    "test:html": "standard & brittle test/html.test.js",
     "fix": "standard --fix"
   },
   "author": "",
@@ -20,5 +22,6 @@
     "standard": "^17.0.0"
   },
   "dependencies": {
+    "chalk": "^5.0.1"
   }
 }

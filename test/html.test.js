@@ -38,6 +38,54 @@ test('/15 should get an image by :index', async (t) => {
   t.end()
 })
 
+test('/ should display assending images', async (t) => {
+  const page = await context.newPage()
+  const url = new URL('/', baseUrl)
+  const response = await page.goto(url.toString())
+
+  t.is(response.status(), 200)
+  await page.locator('#_0')
+  await page.locator('#_1')
+  await page.locator('#_2')
+  t.pass('images cycled')
+  t.end()
+})
+
+test('/?ms=100 should display assending images faster!', async (t) => {
+  const page = await context.newPage()
+  const url = new URL('/?ms=100', baseUrl)
+  const response = await page.goto(url.toString())
+
+  t.is(response.status(), 200)
+  await page.locator('#_0')
+  await page.locator('#_1')
+  await page.locator('#_2')
+  t.pass('images cycled')
+  t.end()
+})
+
+test('/1 mouseover should display metadata sol and date', async (t) => {
+  const page = await context.newPage()
+  const url = new URL('/1', baseUrl)
+  const response = await page.goto(url.toString())
+
+  t.is(response.status(), 200)
+  // move the mouse over the image
+  const image = await page.locator('#_1')
+  await image.hover()
+  const element = await page.locator('#metadata')
+  // verify element has the data and sol
+  const text = await element.innerHTML()
+  t.is(text.includes('Sol: 0'), true)
+  t.is(text.includes('Earth Date: 2021-02-18'), true)
+
+  // mouse to top left of the page
+  await page.mouse.move(0, 0)
+  // verify element has style display: none
+  const style = await element.getAttribute('style')
+  t.is(style.includes('display: none'), true)
+})
+
 // ========================================================
 // STOP SERVER
 // ========================================================
