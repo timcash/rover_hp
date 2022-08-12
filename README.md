@@ -4,6 +4,11 @@ Feel free to add questions or comments to help it improve.
 
 ![video](vid.gif)
 
+# Bonus repo
+In 2020 I built this demo to help some folks on discord get started with hypercore. It shows a few nice patterns around async publishing and subscriptions. Additionaly, it attemps to clear up a few questions that come up around keys.
+https://github.com/timcash/hyperspace-demo
+![hypercore demo](https://raw.githubusercontent.com/timcash/hyperspace-demo/master/demo.png)
+
 # Background
 For this project I took a breadth-first approch to sharing techniques and some code. Less tooling overall is ideal and here I try to show a balance to get some example demostrated quickly. Looking at the hypercore repos the `brittle` library was popular so I took at shot at integrating it. Two other key components are `playwright` for UI and a small library/template to help scaffold projects called `small_http` see https://github.com/timcash/small_http
 
