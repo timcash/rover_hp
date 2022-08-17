@@ -5,14 +5,14 @@ Feel free to add questions or comments to help it improve.
 ![video](vid.gif)
 
 # Bonus repo
-In 2020 I built this demo to help some folks on discord get started with hypercore. It shows a few nice patterns around async publishing and subscriptions. Additionaly, it attemps to clear up a few questions that come up around keys.
+In 2020 I built this demo to help some folks on discord get started with hypercore. It shows a few nice patterns around async publishing and subscriptions. Additionaly, it attemps to clear up a few questions that come up around keys. Running the tests it looks like it is time for an update. I'll try to get to that soon.
 https://github.com/timcash/hyperspace-demo
 ![hypercore demo](https://raw.githubusercontent.com/timcash/hyperspace-demo/master/demo.png)
 
 # Background
-For this project I took a breadth-first approch to sharing techniques and some code. Less tooling overall is ideal and here I try to show a balance to get some example demostrated quickly. Looking at the hypercore repos the `brittle` library was popular so I took at shot at integrating it. Two other key components are `playwright` for UI and a small library/template to help scaffold projects called `small_http` see https://github.com/timcash/small_http
+For this project I took a breadth-first approch to sharing techniques and some code. Less tooling overall is ideal and here and I try to show a balance to get some example demostrated quickly. Looking at the hypercore repos the `brittle` library was popular so I took at shot at integrating it. Two other key components are `playwright` for UI and a small library/template to help scaffold projects called `small_http` see https://github.com/timcash/small_http
 
-Otherwise, no extra libs, just node:core and some vanilla JS for the frontend.
+Otherwise, no external runtime libs, just node:core and some vanilla JS for the frontend.
 
 # Always learning
 Help me learn, I am always up to adapt and try new patterns. Thank you for taking the time review the work.
@@ -22,6 +22,7 @@ Help me learn, I am always up to adapt and try new patterns. Thank you for takin
 npm install
 ```
 # Test
+> I was not able to get the coverge reporting working just right. It is still reporting on the "demo" http server.
 use `test:wrap` or `test:html` to run smaller components.
 ```json
 "scripts": {
