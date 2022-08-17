@@ -46,10 +46,10 @@ function handleHeaders (res, filePath) {
 //  RESPONSE FILE STREAM
 // ===================================================
 // inspect or modify chunks of the response stream
-function streamFile (req, res, relativefilePath) {
-  const reader = createReadStream(relativefilePath)
+function streamFile (req, res, filePath) {
+  const reader = createReadStream(filePath)
   reader.on('open', () => {
-    handleHeaders(res, relativefilePath)
+    handleHeaders(res, filePath)
   })
   reader.on('data', function (chunk) {
     res.write(chunk)
@@ -95,21 +95,18 @@ function handleRequest (req, res) {
   }
 
   const pathname = new URL(req.url, 'http://localhost').pathname
-
-  let file = pathname
-  if (file === '/') {
-    file = '/public/index.html'
-  }
-
-  // regex for /imageIdx
+  const publicDir = '../src/public'
+  const baseDir = join(__dirname, publicDir)
   const imageIdx = /\/(\d+)$/
+  let file = pathname
   const match = file.match(imageIdx)
-  if (match) {
-    file = '/public/index.html'
+
+  if (file === '/' || match) {
+    file = 'index.html'
   }
 
-  const fullPath = join(__dirname, file)
-  streamFile(req, res, fullPath)
+  const filePath = join(baseDir, file)
+  streamFile(req, res, filePath)
 }
 
 // ===================================================
@@ -126,9 +123,13 @@ async function startHttp (port = 8080) {
   })
 
   const p = new Promise((resolve, reject) => {
-    server.listen({ port }, () => {
-      resolve(server)
-      log('HTTP', `Server listening on: http://localhost:${port}`)
+    server.listen({ port }, (error) => {
+      if (error) {
+        reject(error)
+      } else {
+        resolve(server)
+        log('HTTP', `Server listening on: http://localhost:${port}`)
+      }
     })
   })
   return p

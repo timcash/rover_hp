@@ -1,3 +1,3 @@
-import { startHttp } from './http.js'
+import { startHttp } from '../vendor/http.js'
 
 await startHttp()

@@ -3,6 +3,6 @@
     "module": "es6",
     "target": "es6"
   },
-  "include": ["src/**/*", "test/rover_wrap.test.js", "test/html.test.js"],
+  "include": ["src/**/*", "test/rover_wrap.test.js", "test/html.test.js", "vendor/http.js"],
   "exclude": ["node_modules"]
 }

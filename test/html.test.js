@@ -1,6 +1,6 @@
 import { chromium } from 'playwright'
 import { devices } from '@playwright/test'
-import { startHttp, stopHttp } from '../src/http.js'
+import { startHttp, stopHttp } from '../vendor/http.js'
 import { test, configure } from 'brittle'
 
 configure({ serial: true })
@@ -59,6 +59,7 @@ test('/?ms=100 display assending images faster!', async (t) => {
   const url = new URL('/?ms=100', baseUrl)
   const response = await page.goto(url.toString())
 
+  // needs improvement to measure time detla without loading over network?
   t.is(response.status(), 200)
   await page.locator('#_0')
   await page.locator('#_1')
